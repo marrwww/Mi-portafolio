@@ -134,40 +134,27 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-sky-750 via-blue-750 to-cyan-950 text-sky-50 selection:bg-cyan-300 selection:text-sky-800 scroll-smooth">
+    <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-sky-750 via-blue-750 to-blue-950 text-blue-50 selection:bg-blue-300 selection:text-sky-800 scroll-smooth">
       {/* CAPA 1: Imagen de fondo de mar/olas */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 bg-cover bg-center mix-blend-luminosity"
+        className="pointer-events-none fixed inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url('${DATOS_PERSONALES.rutaFondoMar}')` }}
       />
 
       {/* CAPA 2: Filtro degradado azul para que el texto siempre se lea bien */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 bg-gradient-to-b from-sky-950/75 via-blue-950/70 to-cyan-950/85"
+        className="pointer-events-none fixed inset-0"
       />
 
-      {/* CAPA 3: Brillitos / destellos luminosos en el agua */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed -top-24 left-1/4 h-80 w-80 rounded-full bg-cyan-300/20 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed top-1/3 right-10 h-96 w-96 rounded-full bg-sky-400/15 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed bottom-10 left-10 h-72 w-72 rounded-full bg-indigo-300/15 blur-3xl"
-      />
 
       {/* BARRA DE NAVEGACIÓN SUPERIOR (Botones que llevan a cada sección) */}
-      <header className="sticky top-0 z-30 border-b border-cyan-300/15 bg-sky-950/75 backdrop-blur-md">
+      <header className="sticky top-0 z-30 border-b border-blue-700/15 bg-blue-950/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-4">
           <a
             href="#inicio"
-            className="text-xs font-semibold tracking-widest uppercase text-cyan-200 hover:text-white transition"
+            className="text-xs font-semibold tracking-widest uppercase text-blue-200 hover:text-white transition"
           >
             ✦ {DATOS_PERSONALES.nombre}
           </a>
@@ -183,7 +170,7 @@ export default function Home() {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-full border border-cyan-200/20 bg-sky-900/45 px-3.5 py-1.5 text-xs font-medium text-sky-100 hover:border-cyan-300/60 hover:bg-cyan-300 hover:text-sky-950 transition"
+                className="rounded-full border border-blue-300/20 bg-blue-900/45 px-3.5 py-1.5 text-xs font-medium text-blue-100 hover:border-blue-300/60 hover:bg-blue-300 hover:text-sky-950 transition"
               >
                 {link.label}
               </a>
