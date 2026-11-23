@@ -16,7 +16,7 @@ interface Actividad {
 // 1. ZONA DE EDICIÓN RÁPIDA (Cambia aquí tus datos y rutas de imágenes)
 // ============================================================================
 const DATOS_PERSONALES = {
-  nombre: "Marjorie",
+  nombre: "݁ ˖★⋆𐦯Marjorie𖹭 ֶָ֢",
   rol: "Estudiante de Física",
   descripcionCorta:
     "Mi portafolio",
@@ -148,7 +148,6 @@ export default function Home() {
         className="pointer-events-none fixed inset-0"
       />
 
-
       {/* BARRA DE NAVEGACIÓN SUPERIOR (Botones que llevan a cada sección) */}
       <header className="sticky top-0 z-30 border-b border-blue-700/15 bg-blue-950/75 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-4">
@@ -160,12 +159,12 @@ export default function Home() {
           </a>
           <nav className="flex flex-wrap gap-2">
             {[
-              { href: "#inicio", label: "Inicio" },
-              { href: "#sobre-mi", label: "Sobre mí" },
-              { href: "#proyectos", label: "Proyectos (3)" },
-              { href: "#habilidades", label: "Habilidades" },
-              { href: "#formacion", label: "Formación" },
-              { href: "#contacto", label: "Contacto" },
+              { href: "#inicio", label: "𑣲⋆࣪ ִֶָInicio" },
+              { href: "#sobre-mi", label: "⋆.𐙚 ̊Sobre mí" },
+              { href: "#proyectos", label: "⋆˙⟡ִֶProyectos" },
+              { href: "#habilidades", label: "ᯓִֶHabilidades" },
+              { href: "#formacion", label: "₊⊹ִFormación" },
+              { href: "#contacto", label: "ೀContacto" },
             ].map((link) => (
               <a
                 key={link.href}
@@ -471,16 +470,16 @@ export default function Home() {
         {/* SECCIÓN 6: CONTACTO (Formulario interactivo funcionando) */}
         <section
           id="contacto"
-          className="rounded-3xl border border-cyan-200/20 bg-sky-950/55 p-7 sm:p-8 backdrop-blur-md space-y-6"
+          className="rounded-3xl border border-sky-200/20 bg-sky-950/55 p-7 sm:p-8 space-y-6"
         >
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-cyan-300">
-              ✦ Conectemos
+            <span className="text-xs font-semibold uppercase tracking-widest text-blue-300">
+              𑣲⋆ Contactame
             </span>
-            <h2 className="text-2xl font-bold text-white mt-1">Contacto</h2>
-            <p className="text-sm text-sky-100/80 mt-1">
+            <h2 className="text-2xl font-bold text-white mt-1">╰┈➤Contacto₊⊹</h2>
+            <p className="text-sm text-sky-200/80 mt-1">
               ¿Tienes alguna duda sobre mis proyectos o quieres dejar un comentario? Escríbeme aquí o a{" "}
-              <span className="text-cyan-300 underline">{DATOS_PERSONALES.correo}</span>.
+              <span className="text-white-900 underline">{DATOS_PERSONALES.correo}</span>.
             </p>
           </div>
 
@@ -493,7 +492,7 @@ export default function Home() {
                 setNombreContacto(e.target.value);
                 setEstadoEnvio("idle");
               }}
-              className="rounded-xl border border-cyan-200/20 bg-sky-900/40 px-4 py-3 text-sm text-white placeholder:text-sky-200/50 focus:border-cyan-300 focus:outline-none"
+              className="rounded-xl border border-sky-200/20 bg-white-900/40 px-4 py-3 text-sm text-blue placeholder:text-blue-200/50 focus:border-sky-300 focus:outline-none"
             />
             <input
               type="email"
@@ -503,7 +502,7 @@ export default function Home() {
                 setEmailContacto(e.target.value);
                 setEstadoEnvio("idle");
               }}
-              className="rounded-xl border border-cyan-200/20 bg-sky-900/40 px-4 py-3 text-sm text-white placeholder:text-sky-200/50 focus:border-cyan-300 focus:outline-none"
+              className="rounded-xl border border-sky-200/20 bg-white-900/40 px-4 py-3 text-sm text-blue placeholder:text-blue-200/50 focus:border-sky-300 focus:outline-none"
             />
             <textarea
               rows={3}
@@ -513,15 +512,15 @@ export default function Home() {
                 setMensajeContacto(e.target.value);
                 setEstadoEnvio("idle");
               }}
-              className="sm:col-span-2 rounded-xl border border-cyan-200/20 bg-sky-900/40 px-4 py-3 text-sm text-white placeholder:text-sky-200/50 focus:border-cyan-300 focus:outline-none"
+              className="sm:col-span-2 rounded-xl border border-sky-200/20 bg-white-900/40 px-4 py-3 text-sm text-blue placeholder:text-blue-200/50 focus:border-sky-300 focus:outline-none"
             />
 
             <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-3">
               <button
                 type="submit"
-                className="rounded-full bg-gradient-to-r from-cyan-300 to-sky-200 px-6 py-2.5 text-sm font-semibold text-sky-950 shadow-[0_0_20px_rgba(103,232,249,0.4)] hover:brightness-105 transition"
+                className="rounded-full bg-gradient-to-r from-blue-300 to-blue-200 px-6 py-2.5 text-sm font-semibold text-sky-950 shadow-[0_0_20px_rgba(103,232,249,0.4)] hover:brightness-50 transition"
               >
-                Enviar mensaje ✦
+                ⤷Enviar mensaje
               </button>
 
               {estadoEnvio === "error" && (
