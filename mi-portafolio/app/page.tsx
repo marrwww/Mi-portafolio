@@ -23,7 +23,7 @@ const DATOS_PERSONALES = {
   sobreMi:
     "Soy una estudiante de física, apasionada por la ciencia, el arte, la investigación y la observación del entorno. ",
   ubicacion: "San Salvador",
-  correo: "marte.wave@gmail.com",
+  correo: "avelarmajo31@gmail.com",
   github: "https://github.com/marrwww",
   rutaFondoMar: "/recursos/fondomar.png",
   rutaFotoPerfil: "/recursos/perfil.png",
@@ -128,22 +128,54 @@ export default function Home() {
   const [nombreContacto, setNombreContacto] = useState("");
   const [emailContacto, setEmailContacto] = useState("");
   const [mensajeContacto, setMensajeContacto] = useState("");
-  const [estadoEnvio, setEstadoEnvio] = useState<"idle" | "enviado" | "error">("idle");
+  const [honeypot, setHoneypot] = useState("");
+  const [estadoEnvio, setEstadoEnvio] = useState<"idle" | "enviando" | "enviado" | "error">("idle");
+  const [mensajeFeedback, setMensajeFeedback] = useState("");
 
   const actividadActual =
     ACTIVIDADES.find((item) => item.id === activaId) ?? ACTIVIDADES[0];
 
-  const manejarEnvioContacto = (e: FormEvent) => {
-    e.preventDefault();
-    if (!nombreContacto.trim() || !emailContacto.trim() || !mensajeContacto.trim()) {
+  const manejarEnvioContacto = async (e: FormEvent) => {
+  e.preventDefault();
+  if (!nombreContacto.trim() || !emailContacto.trim() || !mensajeContacto.trim()) {
+    setEstadoEnvio("error");
+    setMensajeFeedback("Por favor completa todos los campos antes de enviar.");
+    return;
+  }
+
+  setEstadoEnvio("enviando");
+  setMensajeFeedback("");
+
+  try {
+    const respuesta = await fetch("/api/contacto", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nombre: nombreContacto,
+        email: emailContacto,
+        mensaje: mensajeContacto,
+        empresa: honeypot, // Si un bot lo llena, la API lo bloquea
+      }),
+    });
+
+    const data = await respuesta.json();
+
+    if (!respuesta.ok) {
       setEstadoEnvio("error");
+      setMensajeFeedback(data.error || "Ocurrió un error al enviar el mensaje.");
       return;
     }
+
     setEstadoEnvio("enviado");
+    setMensajeFeedback("¡Mensaje enviado! Revisa tu correo en unos segundos.");
     setNombreContacto("");
     setEmailContacto("");
     setMensajeContacto("");
-  };
+  } catch {
+    setEstadoEnvio("error");
+    setMensajeFeedback("Error de conexión con el servidor.");
+  }
+};
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-b from-sky-750 via-blue-750 to-blue-950 text-blue-50 selection:bg-blue-300 selection:text-sky-800 scroll-smooth">
@@ -284,10 +316,12 @@ export default function Home() {
           <p className="text-sm sm:text-base text-sky-100/85 leading-relaxed">
             {SOBRE_MI.mi_historia}
           </p>
-          <h2 className="text-2xl font-bold text-white">intereses</h2>
-          <p className="text-sm sm:text-base text-sky-100/85 leading-relaxed">
-            {SOBRE_MI.intereses}
-          </p>
+          <h2 className="text-2xl font-bold text-white">Intereses</h2>
+<p className="mt-2 text-sm sm:text-base text-sky-100/85 leading-relaxed">
+  {Array.isArray(SOBRE_MI.intereses)
+    ? SOBRE_MI.intereses.join(" • ")
+    : SOBRE_MI.intereses}
+</p>
           <div className="flex flex-wrap gap-4 pt-2 text-xs text-cyan-200/90">
             <span className="rounded-full border border-cyan-300/20 bg-sky-900/40 px-3.5 py-1">
                {DATOS_PERSONALES.ubicacion}
@@ -542,6 +576,32 @@ export default function Home() {
                 <p className="text-xs text-cyan-300">
                   ¡Mensaje recibido! Gracias por escribir.
                 </p>
+              )}
+            </div>
+            <input
+              type="text"
+              name="empresa"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+            />
+
+            <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-3">
+              <button
+                type="submit"
+                disabled={estadoEnvio === "enviando"}
+                className="rounded-full bg-[#134e7a] px-7 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:bg-[#0e3b5d] disabled:opacity-60 transition"
+              >
+                {estadoEnvio === "enviando" ? "Enviando..." : "Enviar mensaje"}
+              </button>
+
+              {estadoEnvio === "error" && (
+                <p className="text-xs text-rose-600 font-medium">{mensajeFeedback}</p>
+              )}
+              {estadoEnvio === "enviado" && (
+                <p className="text-xs text-[#134e7a] font-semibold">{mensajeFeedback}</p>
               )}
             </div>
           </form>
