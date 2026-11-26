@@ -19,15 +19,27 @@ const DATOS_PERSONALES = {
   nombre: "݁ ˖★⋆𐦯Marjorie𖹭 ֶָ֢",
   rol: "Estudiante de Física",
   descripcionCorta:
-    "Mi portafolio",
+    "Soy física, así que sí: todo me parece interesante y todo tiene explicación (o al menos una buena pregunta).",
   sobreMi:
-    "Soy una estudiante de física, apasionada por la ciencia ",
+    "Soy una estudiante de física, apasionada por la ciencia, el arte, la investigación y la observación del entorno. ",
   ubicacion: "San Salvador",
   correo: "marte.wave@gmail.com",
   github: "https://github.com/marrwww",
   rutaFondoMar: "/recursos/fondomar.png",
   rutaFotoPerfil: "/recursos/perfil.png",
 };
+
+const SOBRE_MI = {
+  mi_historia: "Soy estudiante de la Licenciatura en Física en la Uiversidad de El Salvador, con un profundo interés en la investigación científica y la divulgación del conocimiento. Me apasiona explorar los misterios del universo y compartir mis descubrimientos con otros.",
+
+  intereses: [
+    "Física",
+    "Tocar guitarra",
+    "Música",
+    "Investigación y divulgación científica"
+  ]
+
+}
 
 const HABILIDADES = [
   { categoria: "Lenguajes y Código", items: ["Python", "HTML & CSS"] }
@@ -252,17 +264,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ESPACIO OPCIONAL PARA MINI-FOTOS O INSIGNIAS DEBAJO DE TU FOTO */}
-        <div className="flex gap-3">
-          <div className="h-14 w-14 rounded-xl border border-cyan-300/30 bg-sky-950/60 overflow-hidden">
-            {/* <img src="..." className="h-full w-full object-cover" /> */}
-          </div>
-          <div className="h-14 w-14 rounded-xl border border-cyan-300/30 bg-sky-950/60 overflow-hidden">
-            {/* <img src="..." className="h-full w-full object-cover" /> */}
-          </div>
-        </div>
       </div>
-
     </div>
   </section>
 
@@ -274,9 +276,17 @@ export default function Home() {
           <span className="text-xs font-semibold uppercase tracking-widest text-cyan-300">
             ✦ Sobre mí
           </span>
-          <h2 className="text-2xl font-bold text-white">Un poco de mi historia</h2>
+          <h2 className="text-2xl font-bold text-white">Sobre mi</h2>
           <p className="text-sm sm:text-base text-sky-100/85 leading-relaxed">
             {DATOS_PERSONALES.sobreMi}
+          </p>
+          <h2 className="text-2xl font-bold text-white">Un poco de mi historia</h2>
+          <p className="text-sm sm:text-base text-sky-100/85 leading-relaxed">
+            {SOBRE_MI.mi_historia}
+          </p>
+          <h2 className="text-2xl font-bold text-white">intereses</h2>
+          <p className="text-sm sm:text-base text-sky-100/85 leading-relaxed">
+            {SOBRE_MI.intereses}
           </p>
           <div className="flex flex-wrap gap-4 pt-2 text-xs text-cyan-200/90">
             <span className="rounded-full border border-cyan-300/20 bg-sky-900/40 px-3.5 py-1">
